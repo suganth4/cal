@@ -7,12 +7,9 @@ export default function Calendar({ date }: DateInterface) {
 
     function getDays() {
         const date = new Date(Number(currentDate[0]), Number(currentDate[1]), Number(currentDate[2]));
-        console.log(date)
         date.setDate(1);
-        console.log(date)
         date.setMonth(date.getMonth() + 1);
         date.setDate(0);
-        console.log(date, [date.getDay(), date.getDate(), date.getMonth()])
         return [date.getDay() - 1, date.getDate(), date.getMonth(), date.getFullYear()]
     }
 
