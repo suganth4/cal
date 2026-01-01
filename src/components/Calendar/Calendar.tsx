@@ -5,7 +5,7 @@ export default function Calendar({ date }: DateInterface) {
 
     const currentDate: string[] = date.split('/').reverse();
 
-    function getDays() {
+    function getDetails() {
         const date = new Date(Number(currentDate[0]), Number(currentDate[1]), Number(currentDate[2]));
         date.setDate(1);
         date.setMonth(date.getMonth() + 1);
@@ -13,20 +13,20 @@ export default function Calendar({ date }: DateInterface) {
         return [date.getDay() - 1, date.getDate(), date.getMonth(), date.getFullYear()]
     }
 
-    getDays()
+    getDetails()
 
     return (
         <div className="calendar">
-            <div>{MONTHS[getDays()[2] - 1]} {getDays()[3] }</div>
+            <div>{MONTHS[getDetails()[2] - 1]} {getDetails()[3] }</div>
             <div className="row">{DAYS.map((day) => {
                 return <div className="day">{day.slice(0, 2)}</div>;
             })}
             </div>
             <div className="row">
-                {Array.from({ length: getDays()[0] }, (_, index) => index).map((date) => {
+                {Array.from({ length: getDetails()[0] }, (_, index) => index).map((date) => {
                     return <div className="day"></div>
                 })}
-                {Array.from({ length: getDays()[1] }, (_, index) => index + 1).map((date) => {
+                {Array.from({ length: getDetails()[1] }, (_, index) => index + 1).map((date) => {
                     return <div className={`day ${Number(currentDate[2]) === date ? 'selected' : ''}`}>{date}</div>
                 })}
             </div>
